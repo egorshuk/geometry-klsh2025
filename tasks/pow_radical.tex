@@ -1,0 +1,276 @@
+\begin{enumerate}[resume*]
+    \item Докажите, что высоты треугольника конкурентны. \texttt{0\_0} 
+
+        \solution{
+            Пусть $H_a$, $H_b$, $H_c$ -- основания высот треугольника $ABC$ из вершин $A$, $B$ и $C$ соответственно.
+
+            Четырехугольники $ABH_aH_b$, $ACH_aH_c$ и $BCH_bH_c$ -- вписанные. По \cref{th:radcenter} прямые $AH_a$, $BH_b$, $CH_c$ конкурентны.
+         }
+
+    \item Окружность делит каждую из сторон треугольника на три равные части. Докажите, что этот треугольник -- равносторонний. 
+
+        \solution{
+            Пусть окружность высекает на сторонах $AB$, $AC$ и $BC$ треугольника $ABC$ отрезки $CC_1, BB_1, AA_1$. 
+
+            \begin{equation}
+                \begin{cases}
+                    AB_2 = B_1B_2 = B_1C &= b \\
+                    AC_1 = C_1C_2 = BC_2 &= c \\
+                    BA_1 = A_1A_2 = A_2C &= a
+                \end{cases}
+            \end{equation}
+
+            Т.к. $A_1A_2B_1B_2$ -- вписанный, то 
+            \begin{equation}\label{eq:34.2}
+                \begin{split}
+                    \pow(C, (A_1A_2B_1B_2)) = CA_1 \cdot CA_2 = CB_1 \cdot CB_2 \implies\\
+                    \implies c \cdot 2c = b \cdot 2b \implies c = b \implies AC = BC.
+                \end{split}
+            \end{equation}
+
+            Т.к. $A_1A_2C_1C_2$ -- вписанный, то
+            \begin{equation}\label{eq:34.3}
+                \begin{split}
+                    \pow(B, (A_1A_2C_1C_2)) = BA_1 \cdot BA_2 = BA_1 \cdot BA_2 \implies\\
+                    \implies a \cdot 2a = c \cdot 2c \implies a = c \implies AB = AC.
+                \end{split}
+            \end{equation}
+
+            Из уравнений \labelcref{eq:34.2,eq:34.3} следует что \(
+            AB = AC = BC
+            \).
+        }
+
+    \item\label{th:sekcircles} Окружности ${\color{red}{\psi}}$ и ${\color{blue}{\omega}}$ вписаны в вертикальный угол $\angle {\color{red}{n}}{\color{blue}{m}}$, ${\color{red}{\psi}}$ касается прямой ${\color{red}{n}}$ в точке ${\color{red}{N}}$, а ${\color{blue}{\omega}}$ касается прямой ${\color{blue}{m}}$ в точке ${\color{blue}{M}}$. Докажите, что ${\color{red}{\psi}}$ и ${\color{blue}{\omega}}$ высекают на ${\color{red}{N}}{\color{blue}{M}}$ равные отрезки. 
+
+        \solution{
+            Пусть окружность $\psi$ касается прямой $m$ в точке $Q$, а $\omega$ касается $n$ в точке $P$. Точка $R$ -- вторая точка пересечения прямой $MN$ с $\psi$. Точка $T$ -- вторая точка пересечения прямой $MN$ c $\omega$.
+
+            По \cref{cor:tangent_and_sector}
+            \begin{equation}
+                \begin{aligned}
+                    &\left\{\begin{aligned}
+                        &\pow(M, \psi) = MN \cdot MR = MQ^2\\
+                        &\pow(N, \omega) = NM \cdot NT = NP^2 \\
+                        &MQ = NP, \quad \text{symmetry} 
+                    \end{aligned}\right| \implies MN \cdot MR = NM \cdot NT\implies\\
+                    &\implies MR = NT \implies MR - MN = NT - MN \implies NR = MT.
+                \end{aligned}
+            \end{equation}
+            
+        }
+    \item \task{ММО, 2013, 11.3}{Четырёхугольник $ABCD$ такой, что $AB = BC$ и $AD = DC$. Точки $K$, $L$ и $M$ -- середины отрезков $AB$, $CD$ и $AC$ соответственно. Перпендикуляр, проведённый из точки $A$ к прямой $BC$, пересекается с перпендикуляром, проведённым из точки $C$ к прямой $AD$, в точке $T$. Докажите, что прямые $KL \perp TM$.} 
+        
+        \solution{
+            Пусть точка $P$ -- основание перпендикуляра из точки $A$ на прямую $BC$, а точка $Q$ -- основание перпендикуляра из точки на прямую $AD$. 
+
+            Т.к. $AB = BC$ и $AD=DC$, то $AC \perp BD$ и $AC \cap BD = M$.
+            Тогда четырехугольники $APBM, BCDQ, APCQ$ -- вписанные, с центрами $K, L, M$ соответственно.
+
+            По \cref{th:radcenter}
+            \begin{equation}\label{eq:36.1}
+                \begin{aligned}
+                    &\left\{\begin{aligned}
+                            AP &= \radaxis\left((AB), (AC)\right) \\
+                            CQ &= \radaxis\left( (CD), (AC) \right) 
+                        \end{aligned}\right| \implies \\
+                    &\implies AP \cap CQ = T = \radcenter((AB), (AC), (CD)).
+                \end{aligned}
+            \end{equation} 
+            
+            По \cref{eq:36.1} 
+            \begin{equation}
+                M \in (AB) \cap (CD) \implies M \in \radaxis\left( (AB), (CD) \right) \implies KL \perp TM.
+            \end{equation} 
+        }
+    \item Точка $D$ -- основание биссектрисы из точки $A$ треугольника $ABC$. Окружность $(ABD)$ повторно пересекает прямую $AC$ в точке $E$, а окружность $(ACD)$ повторно пересекает прямую $BC$ в точке $F$. Докажите, что $BF = CE$. 
+
+        \solution{
+            \begin{theorem}[Теорема о биссектрисе]\label{th:angle_bisector}
+                В треугольнике $ABC$ провели биссектрису $AD$, тогда \[
+                \frac{AB}{AC} = \frac{BD}{DC}
+                .\] 
+            \end{theorem}
+            По \cref{th:superpow}
+
+            \begin{equation}\label{eq:37.1}
+                \left\{\begin{aligned}
+                    \pow(B, (ADC)) = BF \cdot BA &= BD \cdot BC \\
+                    \pow(C, (ADB)) = CE \cdot CA &= CD \cdot CB \\
+                \end{aligned}\right| \implies \frac{BF \cdot BA}{BD} = \frac{CE \cdot CA}{CD} 
+            .\end{equation} 
+
+            По \cref{eq:37.1,th:angle_bisector}
+            \begin{equation}
+                \frac{BF}{CE} = \frac{BD \cdot CA}{BA \cdot CD} = \frac{BD}{CD} \cdot \frac{CA}{BA} = 1
+            .\end{equation} 
+        }
+
+    \item Окружность $\omega$ проходит через вершины $A$ и $D$ равнобокой трапеции $ABCD$ и пересекает диагональ $BD$ и боковую сторону $CD$ в точках $P$ и $Q$ соответственно. Точки $P'$ и $Q'$ симметричны точкам $P$ и $Q$ относительно середин отрезков $BD$ и $CD$ соответственно. Докажите, что $B$, $C$, $P'$ и $Q'$ концикличны. 
+
+        \solution{
+            По обратной \cref{th:superpow}
+            \begin{equation}\label{eq:38.1}
+                \pow(C, \Omega) = DQ' \cdot DC = DP' \cdot DB.
+            \end{equation}
+            
+            Если $P'$ и $Q'$ симметричны относительно середин отрезков $BD$ и $CD$, то $DP' = BP$ и $CQ = DQ'$. Тогда \cref{eq:37.1} преобразовывается в 
+            \begin{equation}\label{eq:38.2}
+                \underbrace{CQ \cdot CD}_{\pow(C, \omega)} = \underbrace{BP \cdot BD}_{\pow(B, \omega)}
+            \end{equation}
+
+            Уравнение \labelcref{eq:38.2} верно, т.к. $\omega, B, C$ -- все эти объекты симметричны относительно серединного перпендикуляра к $AD$.
+        }
+
+    \item \task{JBMO Shortlist, 2022, G6}{Пусть $\Omega$ -- описанная окружность треугольника $ABC$. Взяты точки $P$ и $Q$, так что $P$ равноудалена от $A$ и $B$, а $Q$ равноудалена от $A$ и $C$ и углы $PBC$ и $QCB$ равны. Докажите, что касательная к $\Omega$ в точке $A$, прямая $PQ$ и $BC$ пересекаются в одной точке.} 
+
+        \solution{
+            Пусть $\ell$ -- касательная в точке $B$ к окружности $(ABC)$.
+
+            По \cref{cor:tangentangle} существует окружность $\omega$, которая касается прямой $AP$ в точке $A$, а прямой $BQ$ в точке $B$.
+            \begin{equation}
+                \left\{\begin{aligned}
+                    AP^2 &= BP^2 \\
+                    CQ^2 &= BQ^2                 
+                \end{aligned}\right| \implies PQ = \radaxis((B), \omega).
+            \end{equation}
+            \begin{equation}
+               \left\{\begin{aligned}
+                    BC &= \radaxis(\omega, (ABC)) \\ 
+                    PQ &= \radaxis((B), \omega)\\
+                    \ell &= \radaxis((B), (ABC))
+            \end{aligned}\right| \implies BC \cap PQ \cap \ell \neq \varnothing.
+            \end{equation}
+        }
+
+    \item Вневписанные окружности $\omega_b$ и $\omega_c$ треугольника $ABC$ касаются сторон $AC$ и $AB$ соответственно в точках $E$ и $F$. Прямая $EF$ повторно пересекает окружности $\omega_b$ и $\omega_c$ в точках $X$ и $Y$ соответственно. Касательные в точках $X$ и $Y$ проведенные к окружностям $\omega_b$ и $\omega_c$ пересекают прямые $AC$ и $AB$ в точках $K$ и $L$ соответственно. Докажите, что середина отрезка $KL$ равноудалена от точек $E$ и $F$.
+
+        \solution{
+            По \cref{th:sekcircles} $EX = FY$.
+
+            Пусть  $K', L'$ -- середины отрезков $EX, YF$ соответственно. Тогда $YL' = L'F = EK' = K'X$, $LL' \perp EF$ и $KK' \perp EF$. Тогда и середина $KL$ проецируется в середину $XY$, что эквивалентно середине $EF$.
+        }
+
+    \item \begin{enumerate}
+            \item\label{lem:Hinradicalaxis}Пусть $C_1$ и $B_1$  -- точки на сторонах $AB$ и $AC$ треугольника $ABC$ соответственно. Докажите что, радикальная ось окружностей, построенных на $BB_1$ и $CC_1$ как на диаметре, проходит через ортоцентр треугольника $ABC$. 
+
+            \solution{
+                Пусть окружность $(BB_1)$ пересекает сторону $AC$ в точке $P$, а окружность $(CC_1)$ пересекает сторону $AB$ в точке $Q$.
+                Тогда $BQ, CP$ -- высоты треугольника $ABC$, тогда $BQ \cap CP = H$ -- ортоцентр.
+
+                Построим окружность $(BC) \subset \{P, Q\}$. 
+
+                \begin{equation}
+                    \begin{aligned}
+                        &\left\{\begin{aligned}
+                                BQ &= \radaxis((BC), (BB_1)) \\
+                                CP &= \radaxis((BC), (CC_1)) \\
+                            \end{aligned}\right| \implies \\ 
+                        &\implies H = \radcenter((BC), (BB_1), (CC_1)) \implies \\
+                        &\implies H \in \radaxis((BB_1), (CC_1)).
+                    \end{aligned}
+                \end{equation}
+            }
+
+        \item \label{def:Ober's_axis}\task{Ось Обера}{Докажите, что четыре ортоцентра четырёх треугольников, образованных четырьмя попарно пересекающимися прямыми, никакие три из которых не проходят через одну точку\footnote{Такие прямые образуют фигуру, называемую полным четырёхсторонником.}, коллинеарны.}
+
+            \solution{
+                Пусть треугольник $ABC$ пересекает прямая $\ell$, которая пересекает стороны $AB,AC,BC$ в точках $C_1,B_1,A_1$ соответственно.
+                Через $H_{ABC}, H_{A_1B_1C}, H_{A_1BC_1}, H_{AB_1C_1}$ будем обозначать ортоцентры соотетствующих треугольников.
+
+                Построим на $AA_1, BB_1, CC_1$ окружности как на диаметрах.
+                Тогда по \cref{lem:Hinradicalaxis} для треугольника $ABC$
+                 \begin{equation}
+                    \left\{\begin{aligned}
+                        H_{ABC} &\in \radaxis((AA_1), (BB_1)) \\
+                        H_{ABC} &\in \radaxis((AA_1), (CC_1)) \\
+                        H_{ABC} &\in \radaxis((BB_1), (CC_1))
+                    \end{aligned}\right.
+                \end{equation} 
+
+                Аналогичные утверждения можно произвести для других ортоцентров, таким образом получается, что каждый ортоцентр лежит на каждой радикальной оси каждой пары окружности.
+                Т.к. ортоцентры различны, то радикальные оси не могут пересекаться в одной точке, а значит радикальные оси совпадают. И каждый ортоцентр лежит на этой общей радикальной оси.
+            }
+
+        \item \task{Теорема Гаусса-Боденмиллера}{Докажите, что прямая Гаусса\footnote{Прямой Гаусса полного четырёхсторонника называется прямая, проходящая через середины трех его диагоналей.} перпендикулярна оси Обера.}
+
+            \solution{
+                По \cref{th:radaxis,def:Ober's_axis} \emph{Ось Обера} будет перпендикулярна линии центров данных окружностей. А линия центров данных окружностей и есть \emph{прямая Гаусса}, т.к. центрами окружностей являются центры диагоналей четырехсторонника.
+            }
+
+    \end{enumerate}
+    \item Чевианы $AD$, $BE$ и $CF$ треугольника $ABC$ конкурентны. Прямая $EF$ пересекает окружность $(ABC)$ в точках $P$ и $Q$. Докажите, что $P$, $Q$, $D$ и середина отрезка $BC$ концикличны.
+
+        \solution{
+            \begin{theorem}[Теорема Чевы]\label{th:chev}
+                Чевианы $AA_1, BB_1, CC_1$ треугольника $ABC$ конкурентны тогда и только тогда, когда 
+                \[
+                \frac{AC_1}{C_1B}\cdot \frac{BA_1}{A_1C}\cdot \frac{CB_1}{B_1A} = 1
+                .\] 
+            \end{theorem}
+
+            \begin{theorem}[Теорема Менелая]\label{th:menel}
+                Точки $A_1, B_1, C_1$ на прямых $BC, AC, AB$ соответственно коллинеарны тогда и только тогда, когда 
+                \[
+                \frac{AC_1}{C_1B}\cdot \frac{BA_1}{A_1C}\cdot \frac{CB_1}{B_1A} = 1
+                .\] 
+            \end{theorem}
+
+            Пусть прямая $PQ$ пересекает прямую $BC$ в точке $T$, а точка $M$ -- середина $BC$.
+
+            \begin{equation}\label{eq:42.1}
+                \pow(T, (ABC)) = TP \cdot TQ = TB \cdot TC.
+            \end{equation}
+
+            Чтобы искомая окружность $\omega$ существовало должно выполняться
+
+            \begin{equation}\label{eq:42.2}
+                \pow(T, \omega) = TD \cdot TM = \underbrace{TP \cdot TQ = TB \cdot TC}_{\text{по \cref{eq:42.1}}}.
+            \end{equation}
+
+            Также по \cref{th:chev,th:menel}
+
+            \begin{equation}\label{eq:42.3}
+                \frac{BT}{CT} \underset{\text{по \cref{th:menel}}}{=} \frac{BF}{FA}\cdot \frac{AE}{EC} \underset{\text{по \cref{th:chev}}}{=} \frac{BD}{DC}.
+            \end{equation}
+
+            Заметим что в уравнениях \labelcref{eq:42.2,eq:42.3} остались только точки на прямой $BC$. Такую задачу можно решить координатным способом, за начало координат приняв $T$. 
+            \begin{equation}\label{eq:42.4}
+                \begin{aligned}
+                    \frac{TB}{TC} &= \frac{BD}{DC} = \frac{TD-TB}{TC-TD} \Longleftrightarrow \\ 
+                    \Longleftrightarrow TB(TC-TD) &= TC(TD-TB) \\
+                    TB\cdot TC - TB \cdot TD &= TC \cdot TD - TB\cdot TC \\
+                    2 TB\cdot TC &= TD \left( TC + TB \right) \\
+                    TB \cdot TC &= TD \cdot \frac{TC+TB}{2} = TD \cdot TM. \\
+                \end{aligned} 
+            \end{equation} 
+
+            Хочется еще отметить, что из уравнения \labelcref{eq:42.4} следует, что 
+            \[
+                TD = \frac{2TB\cdot TC}{TB + TC} = \frac{2}{\frac{1}{TB}+\frac{1}{TC}}
+            .\] 
+            
+            Поэтому четверка точек  $\left( T, B, D, C \right) $ называется \emph{гармонической}.
+        }
+    %\item \task{Устная олимпиада по геометрии, 2014, 10-11.4}{Медианы $AM_a$, $BM_b$ и $CM_c$ остроугольного треугольника $ABC$ пересекаются в точке $G$, а высоты $AH_a$, $BH_b$ и $CH_c$ -- в точке $H$. Касательная к окружности девяти точек треугольника $ABC$ а в точке $H_c$ пересекает прямую $M_aM_b$ в точке $C'$. Точки $A'$ и $B'$ определяются аналогично. Докажите, что $A'$, $B'$ и $C'$ лежат на одной прямой, перпендикулярной прямой $GH$.}
+
+    \item В треугольнике $ABC$ проведены высоты $AD$, $BE$, $CF$. Прямые $DE$, $EF$ и $DF$ пересекаются прямые $AB$, $BC$ и $AC$. В точках $C_1$, $B_1$, $A_1$ соответственно. Докажите, что точки $A_1$, $B_1$, $C_1$ лежат на прямой\footnote{Такая прямая называется трилинейной полярой ортоцентра, или ортоцентрической осью, или центральной линией центра описанной окружности.} перпендикулярной прямой Эйлера треугольник $ABC$.
+
+        \solution{
+            По \cref{def:euler's circle} Точки $D, E, F$ лежат на окружности Эйлера $\omega_9$ треугольника $ABC$. А $\Omega$ -- описанная окружность этого треугольника.
+
+            Каждый из четырехугольников $ABDE, BCEF, CAFD$ является вписанным.
+            \begin{equation}
+                \left\{\begin{aligned}
+                    \underbrace{A_1B \cdot A_1C}_{\pow(A_1, \omega_9)} &= \underbrace{A_1F \cdot A_1E}_{\pow(A_1, \Omega)} \\ 
+                    \underbrace{B_1C \cdot B_1A}_{\pow(B_1, \omega_9)} &= \underbrace{B_1D \cdot B_1F}_{\pow(B_1, \Omega)} \\ 
+                    \underbrace{C_1A \cdot C_1B}_{\pow(C_1, \omega_9)} &= \underbrace{C_1E \cdot C_1D}_{\pow(C_1, \Omega)}
+                \end{aligned}\right| \implies \{A_1, B_1, C_1\} \in \radaxis(\omega_9, \Omega)
+            .\end{equation} 
+        }
+
+    %\item \task{ММО, 2013, 10.6}{Пусть $I$ -- инцентр неравнобедренного треугольника $ABC$. $A_1$ -- середина дуги $BC$ описанной окружности треугольника $ABC$, не содержащей точки $A$, а $A_2$ -- середина дуги $BAC$. Перпендикуляр, опущенный из точки $A_1$ на прямую $A_2I$, пересекает прямую $BC$ в точке $A'$. Аналогично определяются точки $B'$ и $C'$. \begin{enumerate}
+        %\item Докажите, что точки $A'$, $B'$, $C'$ коллинеарны.
+        %\item Докажите, что эта прямая перпендикулярна прямой $OI$%\footnote{Можно рассматривать степень точки относительно вырожденной окружности.}, где $O$ -- центр описанной окружности треугольника $ABC$.
+    %\end{enumerate}}
+\end{enumerate}
