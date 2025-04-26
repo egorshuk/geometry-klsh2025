@@ -1,5 +1,28 @@
 Ортоцентр -- это такая особенная точка: конструкции, в которых используются его \textbf{симметрии} относительно чего-либо, \textbf{замечательно} связанны с описанной окружностью, и наоборот!
 
+\noindent{\begin{minipage}{0.55\linewidth}
+    \begin{definition}\label{def:orthocenter}
+        Ортоцентр (\textbf{H}) -- это точка пересечения высот треугольника.
+    \end{definition}
+    Я всегда буду ортоцентр треугольника $ABC$ обозначать {\color{OliveGreen}\textbf{большой зеленой точкой}} \textit{(просто я так решил)}, а центр описанной окружности как выколотую \textit{(так уже более принято)}.
+\end{minipage}
+\hfill
+\begin{minipage}{0.4\linewidth}
+    \begin{asy}
+        size(4.8cm);
+        triangle t = triangle((point)(0, 3.7), (point)(-1.5, 0), (point)(3, 0));
+        draw(t, linewidth(bp));
+        point H = orthocentercenter(t);
+
+        draw(segment(t.VA, foot(t.VA)), grey); perpendicularmark(t.BC, line(t.VA, foot(t.VA)), blue, size=7);
+        draw(segment(t.VB, foot(t.VB)), grey); perpendicularmark(t.AC, line(t.VB, foot(t.VB)), blue, quarter=3, size=7);
+        draw(segment(t.VC, foot(t.VC)), grey); perpendicularmark(t.AB, line(t.VC, foot(t.VC)), blue, size=7);
+        
+        dot("$H$", H, 1.2N + .7E, hpen);
+        dot("$O$", circumcenter(t), SE, filltype=FillDraw(fillpen=white, drawpen=black));
+    \end{asy}
+\end{minipage}}
+
 \noindent
 \begin{minipage}{0.55\textwidth}
     \begin{theorem}\label{th:side-reflect}
