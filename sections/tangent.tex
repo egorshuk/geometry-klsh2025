@@ -1,0 +1,117 @@
+Задачи на касающиеся объекты периодически попадются на олимпиадах. Могут касаться две окружности, а также прямая и окружность. Чтобы было удобнее обсуждать эту тему изучим еще одну новую технику -- счет в дугах.
+
+\subsubsection{Счёт в дугах}
+
+\begin{lemma}\label{lem:angle-between-chords}
+    Две прямые $AB$ и $CD$ пересекаются внутри окружности в точке $P$, а точки $A$, $B$, $C$ и $D$ лежат на окружности. Тогда \[\angle APB = \frac{\overset{\frown}{AC} + \overset{\frown}{BD}}{2}.\]
+    Здесь $AB$ и $CD$ -- это меньшие дуги окружности.
+\end{lemma}
+
+\begin{figure}[h]
+    \centering
+    \begin{asy}
+        size(5cm);
+        point O = (0, 0);
+        circle omega = circle(O, 1); draw(omega);
+
+        point A = angpoint(omega, 210);
+        point C = angpoint(omega, 100);
+        point B = angpoint(omega, 15);
+        point D = angpoint(omega, 320);
+
+        point P = intersectionpoint(line(A, B), line(C, D));
+
+
+        draw(A--B, blue); draw(C--D, blue);
+        draw(A--D, red+dashed);
+        markangle(n = 3, C, P, A, radius=14, red);
+        dot(P);
+        markangle(n = 1, C, D, A, radius=14, red);
+        markangle(n = 2, D, A, B, radius=14, red);
+        dot("$A$", A, dir(210));
+        dot("$B$", B, dir(15));
+        dot("$C$", C, dir(100));
+        dot("$D$", D, dir(320));
+        dot("$P$", P, dir(50));
+    \end{asy}
+    \caption{Угол между хордами.}
+    \label{fig:angle-between-chords}
+\end{figure}
+
+\begin{lemma}\label{lem:angle-between-secant}
+    Две прямые $AB$ и $CD$ пересекаются вне окружности в точке $P$, а точки $A$, $B$, $C$ и $D$ лежат на окружности. Тогда \[\angle APB = \frac{\overset{\frown}{AC} - \overset{\frown}{BD}}{2}.\] Здесь $AB$ и $CD$ -- это меньшие дуги окружности. 
+\end{lemma}
+\begin{figure}[h]
+    \centering
+    \begin{asy}
+        size(6cm, 5cm);
+        point O = (0, 0);
+        circle omega = circle(O, 1); draw(omega);
+
+        point A = angpoint(omega, 210);
+        point C = angpoint(omega, 90);
+        point D = angpoint(omega, 5);
+        point B = angpoint(omega, 320);
+
+        point P = intersectionpoint(line(A, B), line(C, D));
+        draw(A--P, blue); draw(C--P, blue);
+        draw(A--D, red+dashed);
+        markangle(n = 3, C, P, A, radius=14, red);
+        dot(P);
+        markangle(n = 1, C, D, A, radius=14, red);
+        markangle(n = 2, B, A, D, radius=14, red);
+        dot("$A$", A, dir(210));
+        dot("$B$", B, dir(320));
+        dot("$C$", C, dir(90));
+        dot("$D$", D, dir(5));
+        dot("$P$", P);
+    \end{asy}
+    \caption{Угол между секущими к окружности.}
+    \label{fig:angle-between-secant}
+\end{figure}
+
+Эта техника и сама бывает стоящей полезной в несложных задачах. Сейчас мы с помощью нее и вычислим угол между касательной и хордой.
+
+\begin{proposition}\label{prop:angle-between-tangent-and-chord}
+    Пусть $AB$ -- хорда окружности, а $C$ -- точка касания касательной к окружности. Тогда угол между касательной и хордой равен вписанному углу, операющему на ту же дугу, что и хорда. То есть \[\angle ACB = \frac{\overset{\frown}{AB}}{2}.\]
+\end{proposition}
+\begin{proof}
+    Пусть $P$ -- точка пересечения касательной с прямой $AB$. Тогда можем посчитать угол $\angle APC$ по \cref{lem:angle-between-secant}:
+    \[
+        \angle APC = \frac{\overset{\frown}{AC} - \overset{\frown}{BC}}{2}.
+    \]
+
+\end{proof}
+
+\begin{figure}
+    \centering
+    \begin{asy}
+        size(6cm, 5cm);
+        point O = (0, 0);
+        circle omega = circle(O, 1); draw(omega);
+
+        point A = angpoint(omega, 210);
+        point B = angpoint(omega, 70);
+        point C = angpoint(omega, 5);
+
+        line t = tangent(omega, C);
+        point P = intersectionpoint(line(A, B), t);
+
+        draw(t, red);
+        draw(A--B);
+        draw(C--A);
+        draw(C--B, blue);
+        draw(B--P, dashed);
+
+        markangle(n = 1, t, line(B, C), radius=20, red);
+        markangle(n = 2, C, A, B, radius=20, red);
+        markangle(n = 3, A, P, C, radius=20, blue);
+
+        dot("$A$", A, dir(210));
+        dot("$B$", B, dir(90));
+        dot("$C$", C, dir(5));
+        dot("$P$", P, dir(40));
+    \end{asy}
+    \caption{Угол между касательной и хордой.}
+    \label{fig:angle-between-tangent-and-chord}
+\end{figure}
