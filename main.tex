@@ -4,8 +4,11 @@
 \usepackage{extra-geometry}
 
 \begin{document}
-
 \pagestyle{empty}
+
+% \input{misc/titlepage.tex}
+% \newpage
+
 \input{misc/abstract.tex}
 \newpage
 
@@ -15,37 +18,36 @@
 \setcounter{page}{1}
 \pagestyle{fancy}
 
+% TODO: не забыть вставить задачки из симплов.
+
 \section{Счет углов}
 \input{sections/counting_angles.tex}
-% не забыть вставить задачки из симплов, а также сделать счёт в дугах.
+
 % \subsection{Касательные к окружности}
 % \input{sections/tangent.tex}
 
 \section{Площади}
+\subsection{Площади простых фигур}
 
 \section{Ортоцентр треугольника}
 \input{sections/symmetry_orthocenter.tex}
 \input{sections/other_orthocenter.tex}
-% больше простых
+% \subsection{Окружность Эйлера}
+% \input{sections/euler_circle.tex}
+\section{Популярные уголки}
 
-\subsection{Окружность Эйлера}
-\input{sections/euler_circle.tex}
 
 \section{Подобие треугольников}
+
+% придумать много простых
+
+\section{Симметрии}
 
 \section{Степень точки}
 \input{sections/pow.tex}
 
 \subsection{Радикальная ось}
 \input{sections/radical.tex}
-% придумать много простых
-
-\section{Движения плоскости}
-\subsection{Параллельный перенос}
-\subsection{Поворот}
-\subsection{Симметрии}
-
-\section{Гомотетия}
 
 \newpage
 \renewcommand{\thesubsection}{\roman{subsection}}
@@ -53,20 +55,22 @@
 
 \section*{Задачи}
 \addcontentsline{toc}{section}{Задачи}
-\subsection{Счёт углов}
+\subsection{Счёт углов-I}
 \input{tasks/counting_angles.tex}
 \subsection{Площади}
-%\input{tasks/area.tex}
-\subsection{Свойства ортоцентра}
+% \input{tasks/area.tex}
+\subsection{Счёт углов-II}
 \input{tasks/orthocenter.tex}
 \input{tasks/euler_circle.tex}
 \subsection{Подобие}
-%\input{tasks/simirality.tex}
+% \input{tasks/simirality.tex}
+\subsection{Симметрия}
+% \input{tasks/symmetry.tex}
 \subsection{Степень точки и радикальная ось}
 \input{tasks/pow_radical.tex}
-\subsection{Движения плоскости}
-%\input{tasks/isom-plane.tex}
-\subsection{Гомотетия}
-%\input{tasks/homothety.tex}
-%\input{tasks/exam.tex}
+
+\newpage
+\addcontentsline{toc}{section}{Контрольная работа}
+\section*{Контрольная работа}
+% \input{tasks/exam.tex}
 \end{document}
