@@ -1,4 +1,6 @@
-\noindent Это самое базовое, что можно сделать, чтобы доказать перпендикулярность: просто посчитать углы, и из этого сделать вывод (какой-то угол будет равен $90^\circ$).
+Под этим названием скрывается, не побоюсь этого слова, самый (!) используемый метод в решении задач. В каждой он встречается в том или ином виде. Поэтому, если вы хотите решать задачи, вам нужно его знать. В основном ``считаются'' углы, связанные с окружностями, но бывает и что-то другое.
+
+Для примера, давайте дакажем, что высоты треугольника пересекаются в одной точке. Для этого вспомним <<вписанные углы>>
 \begin{theorem}\label{th:otrhocenter}
     Высоты треугольника \emph{конкурентны\footnote{Пересекаются в одной точке.}}.
 \end{theorem}
@@ -31,6 +33,8 @@
 
         draw(circle(H, H_a, H_c), dashed+red+bp*0.7);
     \end{asy}
+    \caption{Высоты треугольника пересекаются в одной точке.}
+    \label{fig:orthocenter}
 \end{figure}
 
 \noindent
@@ -60,3 +64,41 @@
         markangle(n = 2, D, A, B, radius=14, blue);
     \end{asy}
 \end{minipage}
+
+\begin{proposition}\label{prop:angle-between-tangent-and-chord}
+    Пусть $AB$ -- хорда окружности, а $C$ -- точка касания касательной к окружности. Тогда угол между касательной и хордой равен вписанному углу, операющему на ту же дугу, что и хорда. То есть \[\angle ACB = \frac{\overset{\frown}{AB}}{2}.\]
+\end{proposition}
+\begin{proof}
+    Пусть $O$ -- центр окружности. Тогда отрезки $OB$ и $ОС$ равны как радиусы. При том, угол $\angle BOC = 2\cdot \angle BAC$. Радиус $OC$ перпенидкулярен касательной в точке $C$. Значит угол между касательной и хордой равен:
+    \[
+        90^\circ - \frac{180^\circ - 2\cdot\angle BAC}{2} = \angle BAC.
+    \]
+\end{proof}
+
+\begin{figure}
+    \centering
+    \begin{asy}
+        size(6cm, 5cm);
+        point O = (0, 0);
+        circle omega = circle(O, 1); draw(omega);
+
+        point A = angpoint(omega, 210);
+        point B = angpoint(omega, 70);
+        point C = angpoint(omega, 5);
+
+        line t = tangent(omega, C); draw(t, red);
+
+        draw(A--B);
+        draw(C--A);
+        draw(C--B, blue);
+
+        markangle(n = 1, t, line(B, C), radius=20, red);
+        markangle(n = 2, C, A, B, radius=20, red);
+
+        dot("$A$", A, dir(210));
+        dot("$B$", B, dir(90));
+        dot("$C$", C, dir(5));
+    \end{asy}
+    \caption{Угол между касательной и хордой.}
+    \label{fig:angle-between-tangent-and-chord}
+\end{figure}
