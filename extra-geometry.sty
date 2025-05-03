@@ -7,3 +7,17 @@
 \let\ch\undefined
 
 \newcommand{\solution}[1]{\if\magic S{\vspace{1ex}\noindent \fbox{\parbox{0.95\linewidth}{\small{\textbf{Решение}: #1}}}\vspace{0.7mm}}\else{}\fi}
+
+\newenvironment{tasks}[1][]
+  {\enumerate[#1]\setuptasks}
+  {\endenumerate}
+
+\newif\ifmoditem
+\newcommand{\setuptasks}{%
+  \global\moditemfalse
+  \let\origmakelabel\makelabel
+  \def\moditem##1{\global\moditemtrue\def\mesymbol{##1}\item}%
+  \def\makelabel##1{%
+    \origmakelabel{##1\ifmoditem\rlap{\mesymbol}\fi\enspace}%
+    \global\moditemfalse}%
+}
