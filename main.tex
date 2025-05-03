@@ -1,8 +1,8 @@
 \documentclass[twoside]{article}
-\newcommand{\magic}{}
+\newcommand{\magic}{S}
 \usepackage{be-my-concrete, be-my-geometry}
 \usepackage{extra-geometry}
-\usepackage{tasks}
+\input{./tucyradd.def}
 
 \begin{document}
 \pagestyle{empty}
@@ -20,6 +20,7 @@
 \pagestyle{fancy}
 
 % TODO: не забыть вставить задачки из симплов.
+% TODO: можно брать задачи из разминок всяких каналов!
 
 \section{Счет углов}
 \input{sections/counting_angles.tex}
@@ -33,7 +34,7 @@
 \section{Ортоцентр треугольника}
 \input{sections/symmetry_orthocenter.tex}
 \input{sections/other_orthocenter.tex}
-\section{Популярные уголки}
+\subsection{Другие популярные уголки}
 
 
 \section{Подобие треугольников}
@@ -53,6 +54,7 @@
 \setcounter{subsection}{0}
 
 \section*{Задачи}
+\markboth{Задачи}{}
 \addcontentsline{toc}{section}{Задачи}
 \subsection{Счёт углов-I}
 \input{tasks/counting_angles.tex}
@@ -68,6 +70,7 @@
 \input{tasks/pow_radical.tex}
 
 \newpage
+\markboth{Контрольная работа}{}
 \addcontentsline{toc}{section}{Контрольная работа}
 \section*{Контрольная работа}
 % \input{tasks/exam.tex}
