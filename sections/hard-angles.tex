@@ -1,0 +1,36 @@
+\begin{lemma}\label{lem:con-or-kite}
+    Если в четырехугольнике $ABCD$, $AC$ -- биссектриса угла $A$ и $BC = CD$, то этот четырехугольник является либо вписанным, либо дельтойдом\footnote{\emph{Дельтойдом (кайтом)} называется четырехугольик, у которого есть две пары равных смежных сторон}.
+\end{lemma}
+
+\begin{figure}[h]
+    \centering
+    \begin{asy}
+        size(6cm, 5cm);
+        triangle t = triangleabc(13, 9, 10);
+
+        circle omega = circle(t); 
+        point M = intersectionpoints(omega, bisector(t.VC))[0];
+
+        draw(point(t.VA)--point(t.VC)--point(t.VB)--M--cycle, linewidth(bp));
+
+        draw(point(t.VC)--M, blue);
+        markangle(n = 1, point(t.VA), point(t.VC), M, radius=16, red);
+        markangle(n = 1, M, point(t.VC), point(t.VB), radius=18, red);
+
+        draw(point(t.VA)--M, StickIntervalMarker(1, 1, size=7));
+        draw(point(t.VB)--M, StickIntervalMarker(1, 1, size=7));
+
+        point H = intersectionpoint(t.BC, perpendicular(t.VA, line(t.VC, M)));
+        draw(M--H, dashed+red, StickIntervalMarker(1, 1, size=7));
+        dot(H);
+
+        draw(omega, red+dashed);
+
+        label("$A$", point(t.VC), N);
+        label("$B$", point(t.VB), E);
+        label("$C$", M, S);
+        label("$D$", point(t.VA), W);
+    \end{asy}
+    \label{fig:con-or-kite}
+    \caption{Случай вписанности и дельтойда.}
+\end{figure}
