@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\usepackage{../be-my-concrete}
+\usepackage[
+    a4paper,
+    margin = 1.5cm
+]{geometry}
+
+\pagestyle{empty}
+
+\begin{document}
+\centering
+\Huge 
+Геометрия-0,5 \bigskip
+
+\LARGE
+Модульный курс на У2 \bigskip
+
+Егор Лунёв \bigskip
+
+Окончившим 8--10 класс 
+
+\bigskip
+\bigskip
+\vfill
+\begin{asy}
+    size(9cm);
+    triangle t = triangleabc(9, 10, 11); draw(t, linewidth(bp));
+
+    point H_a = foot(t.VA); point H_b = foot(t.VB); point H_c = foot(t.VC);
+    point H = orthocentercenter(t);
+
+    draw(segment(t.VA, H_a), grey); draw(segment(t.VB, H_b), grey); draw(segment(t.VC, H_c), grey);
+
+    perpendicularmark(t.AB, line(t.VC, H_c), dashed + blue, size=10);
+    perpendicularmark(t.BC, line(t.VA, H_a), blue, size=10, quarter=1);
+    perpendicularmark(t.AC, line(t.VB, H_b), blue, size=10, quarter=3);
+
+    draw(circle(t.VC, H_a, H_b));
+    draw(H_a--H_b, grey);
+
+    markangle(n = 1, H_a, H, point(t.VC), radius=12, red);
+    markangle(n = 1, H_a, H_b, point(t.VC), radius=14, red);
+
+    clipdraw(circle(t.VA, H_a, H_b));
+
+    //draw(arc(circle(t.VA, H_a, H_b), -5, 185));
+
+    markangle(n = 1, H_a, point(t.VB), H_c, radius=16, red);
+
+    draw(circle(H, H_a, H_c), dashed+red+bp*0.7);
+\end{asy}
+\qquad
+\begin{asy}
+    size(8cm, 6cm);
+    triangle t = triangleabc(11.1, 12.3, 11);
+    draw(t, linewidth(bp)); 
+
+    circle omega = circle(t.A, t.B, t.C); draw(omega);
+
+    line b = bisector(t.VC); 
+    point L = intersectionpoints(b, omega)[0]; dot(L);
+    draw(t.C--L); draw(t.A--L, dashed+blue, StickIntervalMarker(1, 1, size=7)); draw(t.B--L, dashed+blue, StickIntervalMarker(1, 1, size=7));
+
+    markangle(n = 1, t.A, t.C, L, radius = 20, red);
+    markangle(n = 1, L, t.C, t.B, radius = 25, red);
+\end{asy}
+\qquad
+\begin{asy}
+    size(8cm, 6cm);
+    triangle t = triangleabc(11, 9, 10); draw(t, linewidth(bp)); 
+
+    point M = midpoint(t.AB);
+    draw(t.A--t.B, StickIntervalMarker(2, 1, size=7));
+    line m = line(t.C, M); draw(m);
+
+    point Pa = projection(m)*t.A; 
+    point Pb = projection(m)*t.B; 
+
+    draw(Pa--t.A, blue+dashed, StickIntervalMarker(1, 2, size=5)); draw(Pb--t.B, blue+dashed, StickIntervalMarker(1, 2, size=5));
+
+    perpendicularmark(line(t.VA, Pa), m, quarter = 2, red, size=7);
+    perpendicularmark(line(t.VB, Pb), m, quarter = 2, red, size=7);
+
+    dot(Pa);
+    dot(Pb);
+    dot(M);
+    draw(box((-1, -2), (0,0)), invisible);
+\end{asy}
+\qquad
+\begin{asy}
+    size(8cm, 6cm);
+    circle omega = circle(origin(), 1); draw(omega, blue);
+
+    point A = angpoint(omega, 200);
+    point B = angpoint(omega, 144); 
+    point C = angpoint(omega, 80); 
+    point D = angpoint(omega, -20); 
+
+    point M = angpoint(omega, 172);
+    point N = angpoint(omega, 114);
+    point K = angpoint(omega, 30);
+    point L = angpoint(omega, -90);
+
+    draw(A--B--C--D--A);
+
+    draw(A--M, gray, StickIntervalMarker(1, 1, size=5));
+    draw(B--M, gray, StickIntervalMarker(1, 1, size=5));
+    draw(B--N, gray, StickIntervalMarker(1, 2, size=5));
+    draw(C--N, gray, StickIntervalMarker(1, 2, size=5));
+    draw(C--K, gray, StickIntervalMarker(1, 3, size=5));
+    draw(D--K, gray, StickIntervalMarker(1, 3, size=5));
+    draw(D--L, gray, StickIntervalMarker(1, 4, size=5));
+    draw(A--L, gray, StickIntervalMarker(1, 4, size=5));
+
+    draw(N--L, dashed+red);
+    draw(M--K, dashed+red);
+
+    perpendicularmark(line(M, K), line(N, L), blue);
+
+    dot("$A$", A, dir(200));
+    dot("$B$", B, dir(145));
+    dot("$C$", C, dir(80));
+    dot("$D$", D, dir(-20));
+
+    dot("$M$", M, dir(172));
+    dot("$N$", N, dir(114));
+    dot("$K$", K, dir(30));
+    dot("$L$", L, dir(-90));
+\end{asy}
+\qquad
+\begin{asy}
+    size(8cm, 6cm);
+
+    circle omega = circle(origin(), 1); draw(omega, blue);
+
+    point A = angpoint(omega, 160);
+    point B = angpoint(omega, 100);
+    point C = angpoint(omega, 20);
+    point D = angpoint(omega, -100);
+
+    draw(A--B--C--D);
+    draw(A--C, gray);
+    draw(B--D, gray);
+
+    point P = intersectionpoint(line(A,C), line(B, D)); 
+
+    perpendicularmark(line(A, C), line(B, D), red);
+
+
+    point M = (A+D)/2; draw(A--D, StickIntervalMarker(2, 1, size=7));
+
+    draw(line(M, P), dashed+blue);
+
+    perpendicularmark(line(M, P), line(B,C), quarter=3, red);
+
+
+
+    dot(M);
+    dot("$P$", P, dir(-55));
+    dot("$A$", A, dir(160));
+    dot("$B$", B, dir(100));
+    dot("$C$", C, dir(20));
+    dot("$D$", D, dir(-100));
+\end{asy}
+\qquad
+\begin{asy}
+    size(12cm, 6cm);
+    point O = (2, 0);
+    circle omega = circle(O, 1.7); draw(omega);
+    point P = (-2.5, 2); dot("$P$", P, dir(70));
+
+    point A_2 = angpoint(omega, 40); dot("$A_2$", A_2, dir(40));
+    point A_1 = intersectionpoints(omega, line(P, A_2))[1]; dot("$A_1$", A_1, dir(100));
+    draw(line(P, A_2));
+
+    point B_2 = angpoint(omega, -80); dot("$B_2$", B_2, dir(-100));
+    point B_1 = intersectionpoints(omega, line(P, B_2))[1]; dot("$B_1$", B_1, dir(-140));
+    draw(line(P, B_2));
+
+    draw(B_1--A_2, red+dashed); draw(B_2--A_1, red+dashed);
+
+    markangle(n = 1, P, A_2, B_1, radius=25, blue);
+    markangle(n = 1, A_1, B_2, P, radius=25, blue);
+
+    markangle(n = 2, B_2, P, A_2, radius=20, blue+bp);
+
+    draw(box((-3,-2), (4, 2.3)), invisible);
+\end{asy}
+\vfill
+\end{document}
