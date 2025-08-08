@@ -4,15 +4,11 @@
 
 % Fonts
 % \setmainfont{Monofur Nerd Font}
-% \setmathfont{NagwaTKMath-Regular.otf}
-
-% Fonts
-% \setmainfont{Monofur Nerd Font}
 \setmathfont{NagwaTKMath-Regular.otf}
 
 % Main sizes
 \RequirePackage[
-	a4paper,
+	a5paper,
     margin = 1cm,
     top = 1.5cm,
     headsep = 7mm,
@@ -20,10 +16,9 @@
 ]{geometry}
 
 
-
 % Misc
 \def\columnseprulecolor{\color{Navy}}
-\setlength{\columnsep}{1cm}
+\setlength{\columnsep}{5mm}
 \setlength{\columnseprule}{1pt}
 \interfootnotelinepenalty=10000000
 \counterwithin*{footnote}{page}
@@ -39,21 +34,24 @@
 %}}
 
 
-\pagestyle{fancy}
-\fancyhead{}
-\fancyhead[L]{
-    Геометрия-0,5
-}
 
-\newcommand{\namenumberpage}[2]{
+
+
+
+
+% fancy style
+
+
+\newcommand{\namenumberpage}[3]{
+    \pagestyle{fancy}
+    \fancyhead{}
+    \fancyhead[L]{
+        #1
+    }
     \fancyhead[R]{
-        Листок №#2. #1.
+        Листок №#3. 
+        #2
     }
 }
-
-% \fancyhead[RO, LE]{
-% 	\nouppercase{\leftmark \\
-% 		\rightmark}
-% }
 
 \fancyfoot{}
